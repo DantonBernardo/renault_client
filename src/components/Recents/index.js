@@ -12,7 +12,7 @@ export default function Recents() {
     if (groups && groups.length > previousGroups.length && previousGroups.length > 0) {
       const newGroupsAdded = groups.slice(0, groups.length - previousGroups.length);
       setNewGroups(newGroupsAdded);
-      
+
       // Remove o destaque após 3 segundos
       setTimeout(() => {
         setNewGroups([]);
@@ -53,7 +53,7 @@ export default function Recents() {
             return (
               <tr key={group.id} className={isNew ? 'new-group' : ''}>
                 <td>#{group.id}</td>
-                <td>{parseFloat(n.group_time ?? 0).toFixed(2)}s</td>
+                <td>{parseFloat(group.group_time ?? 0).toFixed(2)}s</td>
                 <td>{new Date(group.created_at).toLocaleString()}</td>
                 <td>
                   <table className="inner-table">
@@ -79,6 +79,7 @@ export default function Recents() {
             );
           })}
         </tbody>
+
       </table>
     </div>
   );
