@@ -1,0 +1,186 @@
+.notifications-container {
+  width: 1650px;
+  margin: 2rem auto;
+  background: #fff;
+}
+
+.notifications-title {
+  font-size: 1.75rem;
+  font-weight: 400;
+  color: #172A4B;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #F4C62C;
+  display: inline-block;
+}
+
+.notifications-container table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(23, 42, 75, 0.1);
+  table-layout: fixed; /* Adicionado para melhor responsividade */
+}
+
+.notifications-container thead {
+  background: linear-gradient(135deg, #172A4B, #214484);
+  color: white;
+}
+
+.notifications-container th {
+  padding: 1.25rem 1.5rem;
+  text-align: left;
+  font-weight: 500;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.notifications-container th:nth-child(1) { width: 25%; } /* ID do Grupo */
+.notifications-container th:nth-child(2) { width: 25%; } /* Tempo do Grupo */
+.notifications-container th:nth-child(3) { width: 25%; } /* Status */
+.notifications-container th:nth-child(4) { width: 25%; } /* Razão */
+
+.notifications-container td {
+  padding: 1.5rem;
+  border-bottom: 1px solid #f0f0f0;
+  color: #333;
+  background: #fff;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.notifications-container tr:last-child td {
+  border-bottom: none;
+}
+
+.notifications-container tr:hover td {
+  background-color: #f8fafc;
+  transition: all 0.3s ease;
+}
+
+/* Status colors */
+.notifications-container .late {
+  color: #dc2626;
+  font-weight: 600;
+  background: rgba(220, 38, 38, 0.1) !important;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+}
+
+.notifications-container .early {
+  color: #059669;
+  font-weight: 600;
+  background: rgba(5, 150, 105, 0.1) !important;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+}
+
+/* Destaque para o cubo */
+.notifications-container .cube-color {
+  color: #000000; /* Preto conforme solicitado */
+  font-weight: 600;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.notifications-container td div {
+  color: #000000; /* Preto para o texto do diff */
+  font-weight: 500;
+}
+
+/* Responsivo com scroll */
+@media (max-width: 1700px) {
+  .notifications-container {
+    width: 95vw;
+    overflow-x: auto;
+  }
+  
+  .notifications-container table {
+    min-width: 1400px;
+    table-layout: auto; /* Muda para auto em telas menores */
+  }
+}
+
+@media (max-width: 1200px) {
+  .notifications-container {
+    width: 98vw;
+    margin: 1rem auto;
+  }
+  
+  .notifications-container table {
+    min-width: 1200px;
+  }
+}
+
+@media (max-width: 768px) {
+  .notifications-container {
+    padding: 1rem;
+    width: 100vw;
+    margin: 0.5rem auto;
+  }
+  
+  .notifications-container table {
+    min-width: 1000px;
+    border-radius: 8px;
+  }
+  
+  .notifications-container th,
+  .notifications-container td {
+    padding: 1rem 1.25rem;
+    font-size: 0.9rem;
+  }
+  
+  .notifications-container h2 {
+    font-size: 1.25rem;
+  }
+  
+  .notifications-title {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .notifications-container {
+    padding: 0.5rem;
+  }
+  
+  .notifications-container table {
+    min-width: 800px;
+  }
+  
+  .notifications-container th,
+  .notifications-container td {
+    padding: 0.75rem 1rem;
+    font-size: 0.85rem;
+  }
+}
+
+/* Animações */
+.notifications-container table {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Estados de foco para acessibilidade */
+.notifications-container tr:focus-within td {
+  background-color: #f0f4f8;
+  outline: 2px solid #172A4B;
+  outline-offset: -2px;
+}
