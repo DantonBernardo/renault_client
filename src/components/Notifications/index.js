@@ -42,7 +42,7 @@ export default function NotificationsTable() {
           {notifications.map((n) => (
             <tr key={n.group_id}>
               <td>#{n.group_id}</td>
-              <td>{parseFloat(group.group_time ?? 0).toFixed(2)}s</td>
+              <td>{parseFloat(n.group_time ?? 0).toFixed(2)}s</td>
               <td className={n.type === "high_time" ? "late" : "early"}>
                 {n.type === "high_time" ? "Atrasado" : "Adiantado"}
               </td>
