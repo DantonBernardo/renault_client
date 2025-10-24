@@ -69,7 +69,7 @@ export default function Recents() {
                         <tr key={cube.id}>
                           <td data-color={cube.color}>{cube.color}</td>
                           <td>{cube.face}</td>
-                          <td>{cube.individual_time.toFixed(2)}</td>
+                          <td>{parseFloat(cube.individual_time ?? 0).toFixed(2)}</td>
                         </tr>
                       ))}
                     </tbody>
