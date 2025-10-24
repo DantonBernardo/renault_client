@@ -53,7 +53,7 @@ export default function Recents() {
             return (
               <tr key={group.id} className={isNew ? 'new-group' : ''}>
                 <td>#{group.id}</td>
-                <td>{group.group_time.toFixed(2)}</td>
+                <td>{parseFloat(n.group_time ?? 0).toFixed(2)}s</td>
                 <td>{new Date(group.created_at).toLocaleString()}</td>
                 <td>
                   <table className="inner-table">

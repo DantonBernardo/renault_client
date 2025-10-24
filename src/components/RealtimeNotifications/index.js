@@ -16,25 +16,29 @@ export default function RealtimeNotifications() {
     // 4. Não mostrou notificação muito recentemente (evita spam)
     if (groups && groups.length > previousCount && previousCount > 0) {
       const now = new Date();
-      const timeSinceLastNotification = lastNotificationTime 
-        ? now.getTime() - lastNotificationTime.getTime() 
+      const timeSinceLastNotification = lastNotificationTime
+        ? now.getTime() - lastNotificationTime.getTime()
         : Infinity;
 
       // Só mostra notificação se passou pelo menos 2 segundos da última
       if (timeSinceLastNotification > 2000) {
         const newGroups = groups.slice(0, groups.length - previousCount);
-        const newNotifications = newGroups.map(group => ({
-          id: `group-${group.id}-${Date.now()}`,
-          message: `Novo grupo #${group.id} adicionado! Tempo: ${group.group_time.toFixed(2)}s`,
-          timestamp: new Date(),
-          type: 'success'
-        }));
-        
-        setNotifications(prev => [...newNotifications, ...prev].slice(0, 3)); // Máximo 3 notificações
+        const newNotifications = newGroups.map(group => {
+          const tempo = parseFloat(group.group_time);
+          return {
+            id: `group-${group.id}-${Date.now()}`,
+            message: `Novo grupo #${group.id} adicionado! Tempo: ${isNaN(tempo) ? 'N/A' : tempo.toFixed(2)
+              }s`,
+            timestamp: new Date(),
+            type: 'success'
+          };
+        });
+
+        setNotifications(prev => [...newNotifications, ...prev].slice(0, 3));
         setLastNotificationTime(now);
       }
     }
-    
+
     if (groups) {
       setPreviousCount(groups.length);
     }
@@ -57,8 +61,8 @@ export default function RealtimeNotifications() {
   return (
     <div className="realtime-notifications">
       {notifications.map(notification => (
-        <div 
-          key={notification.id} 
+        <div
+          key={notification.id}
           className={`notification ${notification.type}`}
         >
           <div className="notification-content">
